@@ -6,26 +6,17 @@ import { fetchUser } from '../actions/index.js';
 class UserHeader extends React.Component {
 
     componentDidMount() {
-        // ! PROBLEM: When I replace 1 with this.props.userId it comes through as undefined
-        // TODO: FIX LATER 
-
-        console.log(this.props)
-        const fixLater = this.props.userId === undefined ? 1 : this.props.userId
-
-       this.props.fetchUser(fixLater)
+       
+       this.props.fetchUser(this.props.userId)
     }
 
 
     render() {
 
-        const user = this.props.users.find((user) => {
-           return user.id === this.props.userId
-        })
+        const {user} = this.props
+
 
         if (!user) {return <div>Loading....</div>};
-
-
-
 
 
         return (
@@ -34,8 +25,10 @@ class UserHeader extends React.Component {
     }
 }
 
-function mapStateToProps(state) {
-    return {users: state.users}
+const mapStateToProps = (state, ownProps) => {
+    return {user: state.users.find((user) => {
+        return user.id === ownProps.userId
+     })}
 }
 
 export default connect(mapStateToProps, {fetchUser: fetchUser})(UserHeader);
