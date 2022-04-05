@@ -1,5 +1,7 @@
 import { combineReducers } from "redux";
+import postsReducer from './postsReducer.js';
+
 
 export default combineReducers({
-    dummyReducerReplaceMe: () => 'im a temp dummy reducer'
+    posts: postsReducer
 })

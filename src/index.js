@@ -9,9 +9,9 @@ import reducers from './reducers/index.js'
 
 const store = createStore(reducers, applyMiddleware(thunk))
 
-store.subscribe(() => {
-    console.log(store.getState())
-})
+// store.subscribe(() => {
+//     console.log(store.getState())
+// })
 
 const container = document.getElementById('root');
 const root = ReactDOM.createRoot(container);
